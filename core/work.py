@@ -30,7 +30,7 @@ def send_info(title, need_notify=False):
 def loop():
     send_info("流量告警启动", True)
     while True:
-        time.sleep(5)
+        time.sleep(60)
         send_info("流量阈值告警", False)
 
 
