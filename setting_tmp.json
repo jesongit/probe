@@ -1,0 +1,12 @@
+{
+    "proxy": "https://qyapi.weixin.qq.com",
+    "corpid": "",
+    "corpsecret": "",
+    "time": "2024-12-23 16:51:00", 
+    "rate": 0,
+    "total": "2048GB",
+    "send_offset": 0,
+    "received_offset": 0,
+    "token": "",
+    "expired_time": 0
+}
