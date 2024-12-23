@@ -1,7 +1,7 @@
 import time
 import threading
 from .config import CONFIG
-from .utils import get_network_usage, parse
+from .utils import get_network_usage, parse, format
 from .wechat import notify
 
 
@@ -14,8 +14,7 @@ def send_info(title, need_notify=False):
     month_limit = parse(CONFIG["total"])
     soffset = CONFIG["send_offset"]
     roffset = CONFIG["received_offset"]
-    month_used = total_send - soffset + total_received - roffset
-    print(month_used, total_send, total_received, soffset, roffset)
+    month_used = total_send + soffset + total_received + roffset
     pre_rate = CONFIG["rate"]
     CONFIG["rate"] = rate = month_used / month_limit * 100
 
@@ -23,14 +22,15 @@ def send_info(title, need_notify=False):
         f"send: {format(total_send)} received: {format(total_received)}\n"
         f"used: {format(month_used)} remain: {format(month_limit - month_used)} {rate :.2f}%"
     )
+    print(notify_str)
     if need_notify or check_rate(pre_rate, rate):
         notify(title, notify_str)
 
 
 def loop():
-    send_info("流量进程启动", True)
+    send_info("流量告警启动", True)
     while True:
-        time.sleep(1)
+        time.sleep(5)
         send_info("流量阈值告警", False)
 
 
