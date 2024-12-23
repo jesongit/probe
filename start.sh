@@ -1,2 +1,2 @@
-bash install.sh
+sh install.sh
 python3 main.py
