@@ -28,9 +28,10 @@ def send_info(title, need_notify=False):
 
 
 def loop():
+    send_info("流量进程启动", True)
     while True:
+        time.sleep(1)
         send_info("流量阈值告警", False)
-        time.sleep(10)
 
 
 def start_worker():
